@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxkoabjkd25lk"]
+
+[ext_resource type="PackedScene" uid="uid://dn0gug1bdm5sh" path="res://scenes/alice_01.tscn" id="1_vhud6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ykhvv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jty1j"]
+sky_material = SubResource("ProceduralSkyMaterial_ykhvv")
+
+[sub_resource type="Environment" id="Environment_66hli"]
+background_mode = 2
+sky = SubResource("Sky_jty1j")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vkoiq"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_66hli")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_vhud6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1066, 0)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1, 0, 0, 0, 1000, 0, -1.31068, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_vkoiq")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(2.88485, 0.349419, 1.82188, -0.874963, 1.28249, 0.667778, -0.597529, -0.190968, 7.81814, 0, 3.85475, -5.60195)
